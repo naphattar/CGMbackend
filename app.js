@@ -2,8 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const db = require("./configs/database");
-const Member = require("./model/member");
-const { getMemberbyname } = require("./controllers/membercontroller");
+const router = require("./routes/memberouter");
 
 dotenv.config();
 db.connect();
@@ -16,6 +15,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.get("/:membername",getMemberbyname);
+app.use("/member",router);
+
 
 module.exports = app;
